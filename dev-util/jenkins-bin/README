@@ -1,0 +1,13 @@
+Ebuild was taken from http://code.google.com/p/godin-gentoo-repository.
+
+# Install
+> emerge -avt dev-util/jenkins-bin
+
+# Now you can configure Jenkins:
+> /etc/conf.d/jenkins
+
+# The only thing left to do is to start:
+> /etc/init.d/jenkins start
+
+# And, optionally, add it to start at boot:
+> rc-update add jenkins default
