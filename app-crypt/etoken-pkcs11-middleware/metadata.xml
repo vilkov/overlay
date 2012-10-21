@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<maintainer>
+ <email>dav.daemon@gmail.com</email>
+ <description>
+	If you have any issues, please contact me.
+ </description> 
+ <name>Dmitriy A. Vilkov</name>
+</maintainer>
+<longdescription>SafeNet (Aladdin) eToken Middleware for eTokenPRO, eTokenNG OTP, eTokenNG Flash, eToken Pro (Java)</longdescription> 
+<use>
+</use>
+</pkgmetadata>
