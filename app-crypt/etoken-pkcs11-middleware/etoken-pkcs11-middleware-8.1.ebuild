@@ -22,6 +22,7 @@ LICENSE="EULA"
 RESTRICT="fetch"
 SLOT="0"
 KEYWORDS="-* ~x86 ~amd64"
+FEATURES="-collision-protect"
 
 REQUIRED_USE="amd64? ( multilib )"
 
@@ -55,25 +56,33 @@ src_install()
 {
 	if use amd64; then
 		dodir lib
+		dodir lib32
+		dodir lib64
+		dodir usr/lib
 		dodir usr/lib32
 		dodir usr/lib64
 								
     	cp "${S}"/lib/libeToken.so.8.1 "${D}"/lib32/libeToken.so.8.1
     	dosym /lib32/libeToken.so.8.1 /lib32/libeToken.so.8
-	   	dosym /lib32/libeToken.so.8.1 /usr/lib32/libeTPkcs11.so
-    	    	
+	   	
     	cp "${S}"/lib64/libeToken.so.8.1 "${D}"/lib64/libeToken.so.8.1
     	dosym /lib64/libeToken.so.8.1 /lib64/libeToken.so.8
+	   	
+	   	dosym /lib32/libeToken.so.8.1 /usr/lib32/libeTPkcs11.so
 	   	dosym /lib64/libeToken.so.8.1 /usr/lib64/libeTPkcs11.so
-
+    	    	    	    	
     	cp "${S}"/usr/lib32/libhal.so.1.0.0 "${D}"/usr/lib32/libhal.so.1.0.0
     	dosym /usr/lib32/libhal.so.1.0.0 /usr/lib32/libhal.so.1
 
     	cp "${S}"/usr/lib64/libhal.so.1.0.0 "${D}"/usr/lib64/libhal.so.1.0.0
     	dosym /usr/lib64/libhal.so.1.0.0 /usr/lib64/libhal.so.1
 
-    	cp "${S}"/usr/lib32/libpcsclite.so.1.0.0 "${D}"/usr/lib32/libpcsclite.so.1.0.0
-    	dosym /usr/lib32/libpcsclite.so.1.0.0 /usr/lib32/libpcsclite.so.1
+    	#cp "${S}"/usr/lib32/libpcsclite.so.1.0.0 "${D}"/usr/lib/libpcsclite.so.1.0.0
+    	#dosym /usr/lib/libpcsclite.so.1.0.0 /usr/lib/libpcsclite.so.1
+
+		dodir usr/lib/readers/usb
+    	cp -R "${S}"/usr/share/eToken/drivers/* "${D}"/usr/lib/readers/usb/
+    	cp "${S}"/usr/share/eToken/drivers/aks-ifdh.bundle/Contents/Linux/libAksIfdh.so.8.1 "${D}"/usr/lib/readers/usb/aks-ifdh.bundle/Contents/Linux/libAksIfdh.so
 	else
 		into /
 	  	dolib.so lib/libeToken.so.8.1
