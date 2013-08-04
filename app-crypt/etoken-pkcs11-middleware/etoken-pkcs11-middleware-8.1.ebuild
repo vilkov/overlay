@@ -29,7 +29,8 @@ REQUIRED_USE="amd64? ( multilib )"
 RDEPEND=">=sys-apps/pcsc-lite-1.4.99
 	dev-libs/libusb
 	sys-apps/dbus
-	dev-libs/engine_pkcs11"
+	dev-libs/engine_pkcs11
+	>=sys-apps/hal-0.5.14"
 DEPEND="${RDEPEND}"
 
 QA_PREBUILT="*"
@@ -46,9 +47,9 @@ pkg_nofetch() {
 src_unpack() {
 	rpm_src_unpack ${A}
 
-	use x86 && ( cat "${FILESDIR}/dist/libhal_x86.txz" | tar xJf - )
-	use amd64 && ( cat "${FILESDIR}/dist/libhal_amd64_lib32.txz" | tar xJf - )
-	use amd64 && ( cat "${FILESDIR}/dist/libhal_amd64_lib64.txz" | tar xJf - )
+	#use x86 && ( cat "${FILESDIR}/dist/libhal_x86.txz" | tar xJf - )
+	#use amd64 && ( cat "${FILESDIR}/dist/libhal_amd64_lib32.txz" | tar xJf - )
+	#use amd64 && ( cat "${FILESDIR}/dist/libhal_amd64_lib64.txz" | tar xJf - )
 	use amd64 && ( cat "${FILESDIR}/dist/pcsc_amd64.txz" | tar xJf - )
 }
 
@@ -71,11 +72,11 @@ src_install()
 	   	dosym /lib32/libeToken.so.8.1 /usr/lib32/libeTPkcs11.so
 	   	dosym /lib64/libeToken.so.8.1 /usr/lib64/libeTPkcs11.so
     	    	    	    	
-    	cp "${S}"/usr/lib32/libhal.so.1.0.0 "${D}"/usr/lib32/libhal.so.1.0.0
-    	dosym /usr/lib32/libhal.so.1.0.0 /usr/lib32/libhal.so.1
+    	#cp "${S}"/usr/lib32/libhal.so.1.0.0 "${D}"/usr/lib32/libhal.so.1.0.0
+    	#dosym /usr/lib32/libhal.so.1.0.0 /usr/lib32/libhal.so.1
 
-    	cp "${S}"/usr/lib64/libhal.so.1.0.0 "${D}"/usr/lib64/libhal.so.1.0.0
-    	dosym /usr/lib64/libhal.so.1.0.0 /usr/lib64/libhal.so.1
+    	#cp "${S}"/usr/lib64/libhal.so.1.0.0 "${D}"/usr/lib64/libhal.so.1.0.0
+    	#dosym /usr/lib64/libhal.so.1.0.0 /usr/lib64/libhal.so.1
 
     	#cp "${S}"/usr/lib32/libpcsclite.so.1.0.0 "${D}"/usr/lib/libpcsclite.so.1.0.0
     	#dosym /usr/lib/libpcsclite.so.1.0.0 /usr/lib/libpcsclite.so.1
@@ -89,9 +90,9 @@ src_install()
 	   	dosym /lib/libeToken.so.8.1 /lib/libeToken.so.8
 	   	dosym /lib/libeToken.so.8.1 /usr/lib/libeTPkcs11.so
 
-		into /usr
-	  	dolib.so usr/lib/libhal.so.1.0.0
-	   	dosym /usr/lib/libhal.so.1.0.0 /usr/lib/libhal.so.1
+		#into /usr
+	  	#dolib.so usr/lib/libhal.so.1.0.0
+	   	#dosym /usr/lib/libhal.so.1.0.0 /usr/lib/libhal.so.1
 
 		dodir usr/lib/readers/usb
     	cp -R "${S}"/usr/share/eToken/drivers/* "${D}"/usr/lib/readers/usb/
