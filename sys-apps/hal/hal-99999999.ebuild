@@ -13,7 +13,7 @@ S=${WORKDIR}/${MY_P}
 PATCHNAME="${MY_P}-gentoo-patches-${PATCH_VERSION}"
 DESCRIPTION="Hardware Abstraction Layer"
 HOMEPAGE="http://www.freedesktop.org/wiki/Software/hal"
-EGIT_REPO_URI="http://cgit.freedesktop.org/hal"
+EGIT_REPO_URI="http://anongit.freedesktop.org/git/hal.git"
 
 LICENSE="|| ( GPL-2 AFL-2.0 )"
 SLOT="0"
