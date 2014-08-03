@@ -31,7 +31,8 @@ RDEPEND=">=sys-apps/pcsc-lite-1.4.99
 	net-dialup/ppp[eap-tls]
 	virtual/libusb
 	sys-apps/dbus
-	dev-libs/engine_pkcs11"
+	dev-libs/engine_pkcs11
+	>=sys-apps/hal-0.5.14"
 DEPEND="${RDEPEND}"
 
 QA_PREBUILT="*"
