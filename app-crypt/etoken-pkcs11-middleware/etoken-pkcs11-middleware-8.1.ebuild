@@ -24,6 +24,7 @@ SLOT="0"
 KEYWORDS="-* ~x86 ~amd64"
 FEATURES="-collision-protect"
 
+IUSE="amd64? multilib"
 REQUIRED_USE="amd64? ( multilib )"
 
 RDEPEND=">=sys-apps/pcsc-lite-1.4.99
