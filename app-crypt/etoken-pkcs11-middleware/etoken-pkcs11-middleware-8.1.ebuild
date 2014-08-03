@@ -27,7 +27,7 @@ FEATURES="-collision-protect"
 REQUIRED_USE="amd64? ( multilib )"
 
 RDEPEND=">=sys-apps/pcsc-lite-1.4.99
-	dev-libs/libusb
+	virtual/libusb
 	sys-apps/dbus
 	dev-libs/engine_pkcs11
 	>=sys-apps/hal-0.5.14"
