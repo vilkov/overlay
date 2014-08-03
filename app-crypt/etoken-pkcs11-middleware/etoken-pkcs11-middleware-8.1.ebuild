@@ -24,14 +24,14 @@ SLOT="0"
 KEYWORDS="-* ~x86 ~amd64"
 FEATURES="-collision-protect"
 
-IUSE="amd64? multilib"
+IUSE="multilib"
 REQUIRED_USE="amd64? ( multilib )"
 
 RDEPEND=">=sys-apps/pcsc-lite-1.4.99
+	net-dialup/ppp[eap-tls]
 	virtual/libusb
 	sys-apps/dbus
-	dev-libs/engine_pkcs11
-	>=sys-apps/hal-0.5.14"
+	dev-libs/engine_pkcs11"
 DEPEND="${RDEPEND}"
 
 QA_PREBUILT="*"
