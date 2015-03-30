@@ -30,6 +30,7 @@ REQUIRED_USE="amd64? ( multilib )"
 RDEPEND=">=sys-apps/pcsc-lite-1.4.99
 	net-dialup/ppp[eap-tls]
 	virtual/libusb
+	amd64? ( virtual/libusb[abi_x86_32] )
 	sys-apps/dbus
 	dev-libs/engine_pkcs11
 	>=sys-apps/hal-0.5.14"
