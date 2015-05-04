@@ -4,7 +4,7 @@
 
 EAPI=5
 
-EGIT_REPO_URI="git://github.com/vilkov/genkernel-next.git"
+EGIT_REPO_URI="https://github.com/vilkov/genkernel-next"
 inherit git-2
 
 inherit bash-completion-r1 eutils
@@ -12,7 +12,7 @@ inherit bash-completion-r1 eutils
 KEYWORDS="amd64 ~arm ~ia64 x86"
 
 DESCRIPTION="Gentoo automatic kernel building scripts, reloaded"
-HOMEPAGE="http://www.gentoo.org"
+HOMEPAGE="https://github.com/vilkov/overlay"
 
 LICENSE="GPL-2"
 SLOT="0"
