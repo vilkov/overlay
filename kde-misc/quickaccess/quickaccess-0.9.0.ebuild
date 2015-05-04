@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/quickaccess/quickaccess-0.8.2.ebuild,v 1.1 2012/01/22 22:16:51 johu Exp $
 
-EAPI=4
+EAPI=5
 
 KDE_LINGUAS="de es fr gl nl pt_BR sv tr zh_CN"
 inherit kde4-base git-2
