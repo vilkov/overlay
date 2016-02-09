@@ -1,0 +1,46 @@
+From 5c20a6f3e798279188142f879b2029e71fc1bee3 Mon Sep 17 00:00:00 2001
+From: Dmitry Vilkov <dmitry.a.vilkov@gmail.com>
+Date: Wed, 3 Feb 2016 20:21:03 +0300
+Subject: [PATCHv2] remote-curl: don't fall back to Basic auth if we haven't
+ tried Negotiate
+
+This is fix of bug introduced by 4dbe6646 commit.
+The problem is that when username/password combination was not set,
+the first HTTP(S) request will fail and user will be asked for
+credentials. As a side effect of first HTTP(S) request, libcurl auth
+method GSS-Negotiate will be disabled unconditionally. This is wrong
+because libcurl needs at least empty username/password to use
+GSS-Negotiate. So, even if user has provided such a username/password
+libcurl won't be able to try to use GSS-Negotiate again.
+
+Signed-off-by: Dmitry Vilkov <dmitry.a.vilkov@gmail.com>
+---
+ http.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+
+diff --git a/http.c b/http.c
+index 0da9e66..707ea84 100644
+--- a/http.c
++++ b/http.c
+@@ -951,12 +951,15 @@ static int handle_curl_result(struct slot_results *results)
+ 		return HTTP_MISSING_TARGET;
+ 	else if (results->http_code == 401) {
+ 		if (http_auth.username && http_auth.password) {
++#ifdef LIBCURL_CAN_HANDLE_AUTH_ANY
++			if (http_auth_methods & CURLAUTH_GSSNEGOTIATE) {
++				http_auth_methods &= ~CURLAUTH_GSSNEGOTIATE;
++				return HTTP_REAUTH;
++			}
++#endif
+ 			credential_reject(&http_auth);
+ 			return HTTP_NOAUTH;
+ 		} else {
+-#ifdef LIBCURL_CAN_HANDLE_AUTH_ANY
+-			http_auth_methods &= ~CURLAUTH_GSSNEGOTIATE;
+-#endif
+ 			return HTTP_REAUTH;
+ 		}
+ 	} else {
+-- 
+2.4.10
+
